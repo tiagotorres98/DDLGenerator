@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+
 import br.com.torres.ddlGenerator.entities.Table;
 import br.com.torres.ddlGenerator.factory.IReadFileToFillTableEntityFactory;
 import br.com.torres.ddlGenerator.factory.implement.ReadFileToFillTableEntityFactory;
@@ -35,10 +37,10 @@ public class FileReader implements IFileReader {
 			reader.read(blocks, table);
 		}
 		
-		if(  //false &&
+		if(  false &&
 			 table.getName() != null 
 			 //&& table.getPrimaryKey() == null
-		) {System.out.println(table);}
+		) {System.out.println(new Gson().toJson(table));}
 		
 	}
 	

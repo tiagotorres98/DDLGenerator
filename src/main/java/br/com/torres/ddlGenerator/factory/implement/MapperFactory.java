@@ -21,6 +21,10 @@ public class MapperFactory implements IMapperFactory {
 		list.add(new MapTablePKByIdAnnotation());
 		list.add(new MapTablePKTypeByIdAnnotation());
 		list.add(new MapColumnName());
+		list.add(new MapColumnNameByJoinColumnAnnotation());
+		list.add(new MapColumnType());
+		list.add(new MapColumnIsNullable());
+		list.add(new MapColumnTypeByJoinColumn());
 		return list;
 	}
 

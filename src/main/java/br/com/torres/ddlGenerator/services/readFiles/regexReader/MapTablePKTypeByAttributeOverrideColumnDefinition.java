@@ -12,7 +12,6 @@ public class MapTablePKTypeByAttributeOverrideColumnDefinition implements IMappe
 			if (line.contains("columnDefinition")) {
 				result = line.replaceAll("^.*.columnDefinition.*.=.[^A-Z-a-z-0-9-_]|\".*", "");
 				table.setPrimaryKeyType(result);
-				//System.out.println(result);
 			}
 		} 
 	}
