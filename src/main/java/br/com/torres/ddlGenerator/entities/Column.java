@@ -8,14 +8,11 @@ public class Column {
 	private String name;
 	private String type;
 	private String nullable;
-	private String unique;
-	private String size;
-	
+	private String length;
 	
 	@Override
 	public String toString() {
-		return "Column [name=" + name + ", type=" + type + ", nullable=" + nullable + ", unique=" + unique + ", size="
-				+ size + "]";
+		return "Column [name=" + name + ", type=" + type + ", nullable=" + nullable + ", length=" + length + "]";
 	}
 	
 	

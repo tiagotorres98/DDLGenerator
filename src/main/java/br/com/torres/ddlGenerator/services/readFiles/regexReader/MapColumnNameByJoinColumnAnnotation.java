@@ -16,7 +16,7 @@ public class MapColumnNameByJoinColumnAnnotation implements IMapperColumn {
 				if (line.trim().startsWith("@JoinColumn")) {
 					result = line.trim().replaceAll(".*.name|,.*|[^A-Z-a-z-0-9-_]", "");
 					table.getLastColumn().setName(result);
-					table.getLastColumn().setNullable("false");
+					table.getLastColumn().setNullable("NOT NULL");
 				}
 			}
 		}

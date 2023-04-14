@@ -6,18 +6,23 @@ import br.com.torres.ddlGenerator.entities.Table;
 import br.com.torres.ddlGenerator.services.IMapperColumn;
 import br.com.torres.ddlGenerator.services.readFiles.regexReader.utils.RegexConditionsString;
 
-public class MapColumnIsNullable implements IMapperColumn {
+public class MapColumnLength implements IMapperColumn {
 
 	@Override
 	public void map(String line, Table table) {
 		String result = "";
+		String type = "";
 		if (RegexConditionsString.startsWith(line,"@Column")) {
-			result = getType(line)
-					.replaceAll(".*.nullable|=|,.*|[()]", "");
-			table.getLastColumn().setNullable(result.isEmpty()?"NULL": result.toLowerCase().equals("true")? "NULL" : "NOT NULL");
-		}
-		else if(RegexConditionsString.startsWith(line,"@NotNull")) {
-			table.getLastColumn().setNullable("NOT NULL");
+			type = getType(line).trim();
+
+			if(type.startsWith("@Length")) {
+				result = type.replaceAll(".*.max|=|[)]", "").trim();
+				table.getLastColumn().setLength(result.isEmpty()?"100":result);
+			}
+			else if(type.startsWith("@Column")) {
+				result = type.replaceAll(".*.length|=|,.*|[()]", "").trim();
+				table.getLastColumn().setLength(result.isEmpty()?"100":result);
+			}
 		}
 	}
 
@@ -26,7 +31,7 @@ public class MapColumnIsNullable implements IMapperColumn {
 		try(Scanner scan = new Scanner(block)){
 			while(scan.hasNext()) {
 				String line = scan.nextLine();
-				if(line.trim().toLowerCase().contains("nullable")) {
+				if(line.trim().toLowerCase().contains("length")) {
 					result = line;
 				}
 			}

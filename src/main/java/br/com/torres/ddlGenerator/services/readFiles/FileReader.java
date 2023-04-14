@@ -16,17 +16,19 @@ import br.com.torres.ddlGenerator.services.IReadFileToFillTableEntity;
 
 public class FileReader implements IFileReader {
 
-	private final IReadFileToFillTableEntityFactory readFileFactory = new ReadFileToFillTableEntityFactory();
+	private final IReadFileToFillTableEntityFactory readFileFactory;
+	
+	public FileReader(final IReadFileToFillTableEntityFactory readFileFactory) {
+		this.readFileFactory = readFileFactory;
+	}
 	
 	@Override
 	public Table readFile(File file) {
-		Table table = new Table();
-		table.setColumns(new ArrayList<>());
+		Table table = Table.of();
 		try {
 			List<String> blocks = scanFileToBlockOfCode(file);
 			fileToTable(blocks,table);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return table;
@@ -36,12 +38,6 @@ public class FileReader implements IFileReader {
 		for(IReadFileToFillTableEntity reader: readFileFactory.get()) {
 			reader.read(blocks, table);
 		}
-		
-		if(  false &&
-			 table.getName() != null 
-			 //&& table.getPrimaryKey() == null
-		) {System.out.println(new Gson().toJson(table));}
-		
 	}
 	
 	public List<String> scanFileToBlockOfCode(File file) throws FileNotFoundException {

@@ -11,21 +11,36 @@ public class MapColumnTypeByJoinColumn implements IMapperColumn {
 	@Override
 	public void map(String line, Table table) {
 		String result = "";
-		if (RegexConditionsString.startsWith(line,"@JoinColumn")) {
-			result = getType(line)
-					 .replaceAll("private", "")
-					 .trim()
-					 .replaceAll(" .*", "");
-			table.getLastColumn().setType(result);
+		if (RegexConditionsString.startsWith(line, "@JoinColumn")) {
+			if (line.contains("columnDefinition")) {
+				result = getColumnDefinition(line).replaceAll(".*.columnDefinition|=|\"[)]|\"", "").trim();
+				table.getLastColumn().setType(result);
+			} else {
+				result = getType(line).replaceAll("private", "").trim().replaceAll(" .*", "");
+				table.getLastColumn().setType(result);
+			}
 		}
 	}
 	
+	public String getColumnDefinition(String block) {
+		String result = "";
+		try (Scanner scan = new Scanner(block)) {
+			while (scan.hasNext()) {
+				String line = scan.nextLine();
+				if (line.trim().contains("columnDefinition")) {
+					result = line;
+				}
+			}
+		}
+		return result;
+	}
+
 	public String getType(String block) {
 		String result = "";
-		try(Scanner scan = new Scanner(block)){
-			while(scan.hasNext()) {
+		try (Scanner scan = new Scanner(block)) {
+			while (scan.hasNext()) {
 				String line = scan.nextLine();
-				if(line.trim().startsWith("private")) {
+				if (line.trim().startsWith("private")) {
 					result = line;
 				}
 			}

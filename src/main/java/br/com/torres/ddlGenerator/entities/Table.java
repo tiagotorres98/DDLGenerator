@@ -13,9 +13,10 @@ public class Table {
 	private String className;
 	private String primaryKey;
 	private String primaryKeyType;
+	private String uniqueColumns;
 	private List<Column> columns;
 
-	public Column getLastColumn(){
+	public Column getLastColumn() {
 		if (Objects.isNull(columns)) {
 			setColumns(new ArrayList<Column>());
 			getColumns().add(new Column());
@@ -27,7 +28,13 @@ public class Table {
 	@Override
 	public String toString() {
 		return "Table [name=" + name + ", className=" + className + ", primaryKey=" + primaryKey + ", primaryKeyType="
-				+ primaryKeyType + ", columns=" + columns + "]";
+				+ primaryKeyType + ", uniqueColumns=" + uniqueColumns + ", columns=" + columns + "]";
+	}
+
+	public static Table of() {
+		Table table = new Table();
+		table.setColumns(new ArrayList<>());
+		return table;
 	}
 
 }
