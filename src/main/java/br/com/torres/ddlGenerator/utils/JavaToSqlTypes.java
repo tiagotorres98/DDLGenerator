@@ -6,19 +6,22 @@ import java.util.Map;
 public class JavaToSqlTypes {
 	
 	public static String convert(String type){
-		String result = getTypes().get(type);
+		String result = getTypes().get(type.toLowerCase());
 		return result == null?type:result;
 	}
 	
 	public static Boolean canConvertToSqlType(String type) {
-		return getTypes().get(type) == null ? false : true;
+		return getTypes().get(type.toLowerCase()) == null ? false : true;
 	}
 	
 	public static Map<String,String> getTypes(){
 		Map<String,String> types = new HashMap<>();
 		types.put("long","bigint");
+		types.put("biginteger","bigint");
 		types.put("boolean","bit");
 		types.put("localdate","date");
+		types.put("date","date");
+		types.put("localtime","time");
 		types.put("localdatetime","datetime");
 		types.put("double","float");
 		types.put("int","int");
@@ -28,6 +31,11 @@ public class JavaToSqlTypes {
 		types.put("byte[]","varbinary");
 		types.put("string","varchar");
 		types.put("integer","int");
+		types.put("ordinal", "int");
+		types.put("character", "char");
+		types.put("char", "char");
+		types.put("bigint", "bigint");
+		types.put("smallint", "smallint");
 		return types;
 	}
 
