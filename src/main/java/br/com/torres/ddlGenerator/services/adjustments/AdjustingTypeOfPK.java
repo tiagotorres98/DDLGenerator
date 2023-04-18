@@ -23,12 +23,17 @@ public class AdjustingTypeOfPK implements IAdjustments {
 			}
 			t.setPrimaryKeyType(JavaToSqlTypes.convert(type));
 		});	
-
+		
 		notHaveType.stream().forEach(n ->{
 			tables.stream()
 			.filter(f-> f.getName() != null)
-			.filter(f-> f.getClassName().toLowerCase().equals(n.getPrimaryKeyType().toLowerCase()))
-			.forEach(t-> n.setPrimaryKeyType(n.getPrimaryKey()));
+			.forEach(t-> {
+				if(t.getClassName().toLowerCase().equals(n.getPrimaryKeyType().toLowerCase())) {
+					n.setPrimaryKeyType(n.getPrimaryKey());
+				}else {
+					n.setPrimaryKeyType(JavaToSqlTypes.convert("long"));
+				}
+			});
 		});
 	}
 }

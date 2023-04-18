@@ -17,7 +17,6 @@ public class ReadFileContentToFillTableColumnEntity implements IReadFileToFillTa
 		this.mapperFactory = mapperFactory;
 	}
 
-	@Override
 	public void read(List<String> blocks, Table table) {
 		blocks.forEach(b -> {
 			mapLineToColumn(Optional.of(b), table);

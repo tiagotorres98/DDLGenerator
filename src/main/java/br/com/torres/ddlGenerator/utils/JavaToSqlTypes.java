@@ -15,7 +15,7 @@ public class JavaToSqlTypes {
 	}
 	
 	public static Map<String,String> getTypes(){
-		Map<String,String> types = new HashMap<>();
+		Map<String,String> types = new HashMap<String, String>();
 		types.put("long","bigint");
 		types.put("biginteger","bigint");
 		types.put("boolean","bit");
@@ -37,6 +37,23 @@ public class JavaToSqlTypes {
 		types.put("bigint", "bigint");
 		types.put("smallint", "smallint");
 		return types;
+	}
+	
+	public static Boolean isNumberTypes(String type){
+		Map<String,String> types = new HashMap<String, String>();
+		types.put("long","bigint");
+		types.put("biginteger","bigint");
+		types.put("double","float");
+		types.put("int","int");
+		types.put("bigdecimal","numeric");
+		types.put("float","real");
+		types.put("short","smallint");
+		types.put("integer","int");
+		types.put("ordinal", "int");
+		types.put("bigint", "bigint");
+		types.put("smallint", "smallint");
+		
+		return types.get(type.toLowerCase()) == null ? false : true;
 	}
 
 }

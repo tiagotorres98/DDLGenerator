@@ -12,9 +12,13 @@ public class AdjustmentsFactory implements IAdjustmentsFactory {
 	@Override
 	public List<IAdjustments> get() {
 		// TODO Auto-generated method stub
-		List<IAdjustments> list = new ArrayList<>();
+		List<IAdjustments> list = new ArrayList<IAdjustments>();
+		list.add(new RemoveInvalidsTables());
+		list.add(new RemoveInvalidsColumns());
 		list.add(new AdjustingTypeOfPK());
 		list.add(new AdjustingTypeOfColumns());
+		list.add(new AdjustingVarcharType());
+		list.add(new AdjustingNumericType());
 		return list;
 	}
 

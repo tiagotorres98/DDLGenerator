@@ -8,7 +8,6 @@ import br.com.torres.ddlGenerator.services.readFiles.regexReader.utils.RegexCond
 
 public class MapColumnTypeByEnumeratedTag implements IMapperColumn {
 
-	@Override
 	public void map(String block, Table table) {
 		String result = "";
 		if (RegexConditionsString.startsWith(block, "@Enumerated")) {
@@ -19,13 +18,15 @@ public class MapColumnTypeByEnumeratedTag implements IMapperColumn {
 
 	public String getType(String block) {
 		String result = "";
-		try (Scanner scan = new Scanner(block)) {
+		Scanner scan = new Scanner(block);
+		try {
 			while (scan.hasNext()) {
 				String line = scan.nextLine();
 				if (line.trim().startsWith("@Enumerated")) {
 					result = line;
 				}
 			}
+		} catch (Exception e) {
 		}
 		return result;
 	}

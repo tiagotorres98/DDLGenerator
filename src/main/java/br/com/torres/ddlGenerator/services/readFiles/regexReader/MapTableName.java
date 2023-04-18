@@ -5,8 +5,9 @@ import br.com.torres.ddlGenerator.services.IMapperTable;
 
 public class MapTableName implements IMapperTable {
 
-	@Override
+	
 	public void map(String line, Table table) {
+			
 		String result = "";
 		if(line.trim().startsWith("@Table")) {
 			result = line.trim()
@@ -16,6 +17,7 @@ public class MapTableName implements IMapperTable {
 					.replaceAll("[^0-9-A-Z-a-z_]", "");
 			table.setName(result);
 		}
+		
 	}
 
 }

@@ -8,7 +8,6 @@ import br.com.torres.ddlGenerator.services.readFiles.regexReader.utils.RegexCond
 
 public class MapColumnTypeByJoinColumn implements IMapperColumn {
 
-	@Override
 	public void map(String line, Table table) {
 		String result = "";
 		if (RegexConditionsString.startsWith(line, "@JoinColumn")) {
@@ -21,29 +20,33 @@ public class MapColumnTypeByJoinColumn implements IMapperColumn {
 			}
 		}
 	}
-	
+
 	public String getColumnDefinition(String block) {
 		String result = "";
-		try (Scanner scan = new Scanner(block)) {
+		Scanner scan = new Scanner(block);
+		try {
 			while (scan.hasNext()) {
 				String line = scan.nextLine();
 				if (line.trim().contains("columnDefinition")) {
 					result = line;
 				}
 			}
+		} catch (Exception e) {
 		}
 		return result;
 	}
 
 	public String getType(String block) {
 		String result = "";
-		try (Scanner scan = new Scanner(block)) {
+		Scanner scan = new Scanner(block);
+		try {
 			while (scan.hasNext()) {
 				String line = scan.nextLine();
 				if (line.trim().startsWith("private")) {
 					result = line;
 				}
 			}
+		} catch (Exception e) {
 		}
 		return result;
 	}

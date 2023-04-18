@@ -7,7 +7,7 @@ import br.com.torres.ddlGenerator.services.IMapperColumn;
 
 public class MapTablePKTypeByIdAnnotation implements IMapperColumn {
 
-	@Override
+	
 	public void map(String line, Table table) {
 		String result = "";
 		if (line.trim().contains("@Id")) {
@@ -21,7 +21,7 @@ public class MapTablePKTypeByIdAnnotation implements IMapperColumn {
 	
 	public String getType(String block) {
 		String result = "";
-		try(Scanner scan = new Scanner(block)){
+		Scanner scan = new Scanner(block); try{
 			while(scan.hasNext()) {
 				String line = scan.nextLine();
 				if(line.trim().startsWith("private")) {
@@ -29,7 +29,8 @@ public class MapTablePKTypeByIdAnnotation implements IMapperColumn {
 				}
 			}
 		}
-		return result;
+		catch(Exception e){}
+		return result; 
 	}
 	
 }

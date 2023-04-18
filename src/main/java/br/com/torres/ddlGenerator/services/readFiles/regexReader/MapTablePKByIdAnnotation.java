@@ -7,7 +7,6 @@ import br.com.torres.ddlGenerator.services.IMapperColumn;
 
 public class MapTablePKByIdAnnotation implements IMapperColumn {
 
-	@Override
 	public void map(String line, Table table) {
 		String result = "";
 		if (line.trim().contains("@Id")) {
@@ -15,18 +14,20 @@ public class MapTablePKByIdAnnotation implements IMapperColumn {
 			table.setPrimaryKey(result);
 		}
 	}
-	
+
 	public String getPk(String block) {
 		String result = "";
-		try(Scanner scan = new Scanner(block)){
-			while(scan.hasNext()) {
+		Scanner scan = new Scanner(block);
+		try {
+			while (scan.hasNext()) {
 				String line = scan.nextLine();
-				if(line.trim().startsWith("@Column")) {
+				if (line.trim().startsWith("@Column")) {
 					result = line;
 				}
 			}
+		} catch (Exception e) {
 		}
 		return result;
 	}
-	
+
 }

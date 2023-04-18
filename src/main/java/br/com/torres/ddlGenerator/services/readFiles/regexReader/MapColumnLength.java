@@ -8,33 +8,33 @@ import br.com.torres.ddlGenerator.services.readFiles.regexReader.utils.RegexCond
 
 public class MapColumnLength implements IMapperColumn {
 
-	@Override
 	public void map(String line, Table table) {
 		String result = "";
 		String type = "";
-		if (RegexConditionsString.startsWith(line,"@Column")) {
+		if (RegexConditionsString.startsWith(line, "@Column")) {
 			type = getType(line).trim();
 
-			if(type.startsWith("@Length")) {
+			if (type.startsWith("@Length")) {
 				result = type.replaceAll(".*.max|=|[)]", "").trim();
-				table.getLastColumn().setLength(result.isEmpty()?"100":result);
-			}
-			else if(type.startsWith("@Column")) {
+				table.getLastColumn().setLength(result.isEmpty() ? "100" : result);
+			} else if (type.startsWith("@Column")) {
 				result = type.replaceAll(".*.length|=|,.*|[()]", "").trim();
-				table.getLastColumn().setLength(result.isEmpty()?"100":result);
+				table.getLastColumn().setLength(result.isEmpty() ? "100" : result);
 			}
 		}
 	}
 
 	public String getType(String block) {
 		String result = "";
-		try(Scanner scan = new Scanner(block)){
-			while(scan.hasNext()) {
+		Scanner scan = new Scanner(block);
+		try {
+			while (scan.hasNext()) {
 				String line = scan.nextLine();
-				if(line.trim().toLowerCase().contains("length")) {
+				if (line.trim().toLowerCase().contains("length")) {
 					result = line;
 				}
 			}
+		} catch (Exception e) {
 		}
 		return result;
 	}

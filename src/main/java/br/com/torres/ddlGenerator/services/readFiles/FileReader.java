@@ -22,7 +22,6 @@ public class FileReader implements IFileReader {
 		this.readFileFactory = readFileFactory;
 	}
 	
-	@Override
 	public Table readFile(File file) {
 		Table table = Table.of();
 		try {
@@ -42,7 +41,7 @@ public class FileReader implements IFileReader {
 	
 	public List<String> scanFileToBlockOfCode(File file) throws FileNotFoundException {
 		boolean lineContainsPrivate = false;
-		List<String> result = new ArrayList<>();
+		List<String> result = new ArrayList<String>();
 		Scanner scan = new Scanner(file);
 		String block = "";
 		while(scan.hasNext()) {

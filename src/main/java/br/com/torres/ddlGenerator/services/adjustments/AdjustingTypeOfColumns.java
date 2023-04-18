@@ -17,7 +17,7 @@ public class AdjustingTypeOfColumns implements IAdjustments {
 		// TODO Auto-generated method stub
 		tablesStream(tables).forEach(t -> {
 			columnsStream(t.getColumns()).forEach(c->{
-				setColumsTypeByClassType(tables,c,t);
+				setColumsTypeByClassType(tables,c);
 				setColumnsToSqlType(c,t);
 			});
 		});
@@ -27,13 +27,17 @@ public class AdjustingTypeOfColumns implements IAdjustments {
 		if(JavaToSqlTypes.canConvertToSqlType(c.getType())) {
 			c.setType(JavaToSqlTypes.convert(c.getType()));
 		}
-		
+		else {
+			c.setType(JavaToSqlTypes.convert("long"));
+		}
 	}
 	
-	public void setColumsTypeByClassType(List<Table> tables,Column c, Table t) {
+	public void setColumsTypeByClassType(List<Table> tables,Column c) {
 		tablesStream(tables).forEach(tt-> {
-			if(tt.getClassName().toLowerCase().equals(c.getType().toLowerCase())){
-				c.setType(t.getPrimaryKeyType());
+			String className = tt.getClassName().toLowerCase().trim();
+			String columnType = c.getType().toLowerCase().trim();
+			if(className.equals(columnType)){
+				c.setType(tt.getPrimaryKeyType());
 			}
 		});
 	}

@@ -33,7 +33,7 @@ public class Table {
 
 	public static Table of() {
 		Table table = new Table();
-		table.setColumns(new ArrayList<>());
+		table.setColumns(new ArrayList<Column>());
 		return table;
 	}
 

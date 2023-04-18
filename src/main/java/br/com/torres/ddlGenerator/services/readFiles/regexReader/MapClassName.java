@@ -5,7 +5,6 @@ import br.com.torres.ddlGenerator.services.IMapperTable;
 
 public class MapClassName implements IMapperTable {
 
-	@Override
 	public void map(String line,Table table) {
 		String result = "";
 		if(line.trim().startsWith("public class")) {

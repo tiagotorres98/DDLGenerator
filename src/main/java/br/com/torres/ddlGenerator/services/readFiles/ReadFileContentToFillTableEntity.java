@@ -19,7 +19,6 @@ public class ReadFileContentToFillTableEntity implements IReadFileToFillTableEnt
 		this.mapperFactory = mapperFactory;
 	}
 
-	@Override
 	public void read(List<String> blocks, Table table) {
 		final Optional<String> block = blocks.stream().findFirst();
 		Scanner scan = new Scanner(block.orElse(""));

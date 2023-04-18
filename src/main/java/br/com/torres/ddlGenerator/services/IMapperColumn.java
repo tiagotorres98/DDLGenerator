@@ -1,5 +1,6 @@
 package br.com.torres.ddlGenerator.services;
 
-public interface IMapperColumn extends IMapper{
+import br.com.torres.ddlGenerator.entities.Table;
 
+public interface IMapperColumn extends IMapper{
 }
