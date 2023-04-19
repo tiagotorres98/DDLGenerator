@@ -14,7 +14,9 @@ public class AdjustingVarcharType implements IAdjustments {
 	@Override
 	public void adjusting(List<Table> tables) {
 		// TODO Auto-generated method stub
-		tables.forEach(t->{
+		tables.stream()
+		.filter(f-> f.getEmbeddableTable().equals(Boolean.FALSE))
+		.forEach(t->{
 			if(t.getPrimaryKeyType().equals("varchar")) {
 				t.setPrimaryKeyType(String.format(VARCHAR, DEFAULT_LENGTH));
 			}

@@ -2,6 +2,7 @@ package br.com.torres.ddlGenerator.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class JavaToSqlTypes {
 	
@@ -11,6 +12,9 @@ public class JavaToSqlTypes {
 	}
 	
 	public static Boolean canConvertToSqlType(String type) {
+		if(Objects.isNull(type)) {
+			return Boolean.FALSE;
+		}
 		return getTypes().get(type.toLowerCase()) == null ? false : true;
 	}
 	
@@ -40,6 +44,11 @@ public class JavaToSqlTypes {
 	}
 	
 	public static Boolean isNumberTypes(String type){
+		
+		if(Objects.isNull(type)) {
+			return Boolean.FALSE;
+		}
+		
 		Map<String,String> types = new HashMap<String, String>();
 		types.put("long","bigint");
 		types.put("biginteger","bigint");

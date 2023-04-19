@@ -28,6 +28,7 @@ public class MapperFactory implements IMapperFactory {
 		list.add(new MapColumnIsUnique());
 		list.add(new MapColumnTypeByJoinColumn());
 		list.add(new MapColumnTypeByEnumeratedTag());
+		list.add(new MapEmbeddable());
 		return list;
 	}
 

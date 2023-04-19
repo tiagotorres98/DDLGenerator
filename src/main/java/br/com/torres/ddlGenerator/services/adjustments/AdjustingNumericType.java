@@ -15,7 +15,8 @@ public class AdjustingNumericType implements IAdjustments {
 	@Override
 	public void adjusting(List<Table> tables) {
 		// TODO Auto-generated method stub
-		tables.forEach(t->{
+		tables.stream()
+		.filter(f-> f.getEmbeddableTable().equals(Boolean.FALSE)).forEach(t->{
 			if(t.getPrimaryKeyType().equals("numeric")) {
 				t.setPrimaryKeyType(String.format(NUMERIC, DEFAULT_PRECISION,DEFAULT_SCALE_TO_PK));
 			}

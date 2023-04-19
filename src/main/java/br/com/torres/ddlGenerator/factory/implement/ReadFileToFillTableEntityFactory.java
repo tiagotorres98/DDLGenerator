@@ -5,10 +5,8 @@ import java.util.List;
 
 import br.com.torres.ddlGenerator.factory.IMapperFactory;
 import br.com.torres.ddlGenerator.factory.IReadFileToFillTableEntityFactory;
-import br.com.torres.ddlGenerator.services.IMapper;
 import br.com.torres.ddlGenerator.services.IReadFileToFillTableEntity;
-import br.com.torres.ddlGenerator.services.readFiles.ReadFileContentToFillTableColumnEntity;
-import br.com.torres.ddlGenerator.services.readFiles.ReadFileContentToFillTableEntity;
+import br.com.torres.ddlGenerator.services.readFiles.*;
 
 public class ReadFileToFillTableEntityFactory implements IReadFileToFillTableEntityFactory {
 
@@ -19,6 +17,7 @@ public class ReadFileToFillTableEntityFactory implements IReadFileToFillTableEnt
 		List<IReadFileToFillTableEntity> list = new ArrayList<>();
 		list.add(new ReadFileContentToFillTableEntity(mapperFactory));
 		list.add(new ReadFileContentToFillTableColumnEntity(mapperFactory));
+		list.add(new ReadFileContentToFillEmbeddableTableEntity(mapperFactory));
 		return list;
 	}
 

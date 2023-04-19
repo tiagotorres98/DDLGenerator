@@ -15,7 +15,8 @@ public class Table {
 	private String primaryKeyType;
 	private String uniqueColumns;
 	private List<Column> columns;
-
+	private Boolean embeddableTable;
+	
 	public Column getLastColumn() {
 		if (Objects.isNull(columns)) {
 			setColumns(new ArrayList<Column>());
@@ -25,16 +26,19 @@ public class Table {
 		return getColumns().get(count - 1);
 	}
 
-	@Override
-	public String toString() {
-		return "Table [name=" + name + ", className=" + className + ", primaryKey=" + primaryKey + ", primaryKeyType="
-				+ primaryKeyType + ", uniqueColumns=" + uniqueColumns + ", columns=" + columns + "]";
-	}
-
 	public static Table of() {
 		Table table = new Table();
+		table.setEmbeddableTable(Boolean.FALSE);
 		table.setColumns(new ArrayList<Column>());
 		return table;
 	}
 
+	@Override
+	public String toString() {
+		return "Table [name=" + name + ", className=" + className + ", primaryKey=" + primaryKey + ", primaryKeyType="
+				+ primaryKeyType + ", uniqueColumns=" + uniqueColumns + ", columns=" + columns + ", embeddableTable="
+				+ embeddableTable + "]";
+	}
+
+	
 }

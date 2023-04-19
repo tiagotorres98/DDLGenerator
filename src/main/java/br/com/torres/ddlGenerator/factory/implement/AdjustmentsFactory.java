@@ -15,6 +15,7 @@ public class AdjustmentsFactory implements IAdjustmentsFactory {
 		List<IAdjustments> list = new ArrayList<IAdjustments>();
 		list.add(new RemoveInvalidsTables());
 		list.add(new RemoveInvalidsColumns());
+		list.add(new AdjustingOfEmbeddableTable());
 		list.add(new AdjustingTypeOfPK());
 		list.add(new AdjustingTypeOfColumns());
 		list.add(new AdjustingVarcharType());
