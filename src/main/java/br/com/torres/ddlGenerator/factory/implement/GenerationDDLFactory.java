@@ -8,6 +8,7 @@ import br.com.torres.ddlGenerator.factory.IAdjustmentsFactory;
 import br.com.torres.ddlGenerator.factory.IFileGeneratorFactory;
 import br.com.torres.ddlGenerator.services.IGenerateDDL;
 import br.com.torres.ddlGenerator.services.implement.GenerateDDL;
+import br.com.torres.ddlGenerator.services.implement.GenerateDDLByDataBase;
 
 public class GenerationDDLFactory implements IGenerationDDLFactory {
 
@@ -29,7 +30,8 @@ public class GenerationDDLFactory implements IGenerationDDLFactory {
 	}
 
 	public IGenerateDDL get() {
-		return new GenerateDDL(fileGeneratorFactory.get(),generateScriptsFactory.get(),validationsFactory.get(), readDirectoriesFactory.get(), fileReaderFactory.get());
+		//return new GenerateDDL(fileGeneratorFactory.get(),generateScriptsFactory.get(),validationsFactory.get(), readDirectoriesFactory.get(), fileReaderFactory.get());
+		return new GenerateDDLByDataBase(generateScriptsFactory.get(),fileGeneratorFactory.get());
 	}
 
 }

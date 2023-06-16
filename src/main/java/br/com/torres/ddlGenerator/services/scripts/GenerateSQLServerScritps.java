@@ -49,7 +49,9 @@ public class GenerateSQLServerScritps implements IGenerateScript {
 
 	public String createColumnsScript(Table table) {
 		String result = 
-		table.getColumns().stream()
+		table.getColumns()
+		.stream()
+		.filter(f-> f.getName() != null)
 		.map(c->stringFormatVerifyIfColumnExists(table, c))
 		.collect(Collectors.joining());		
 		return result;

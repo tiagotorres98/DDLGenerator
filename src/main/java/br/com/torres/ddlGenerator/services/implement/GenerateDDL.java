@@ -41,7 +41,7 @@ public class GenerateDDL implements IGenerateDDL {
 		readFiles(files);
 		adjustments();
 		createScripts(ScriptTypes.SQLSERVER);
-		createFile("C:\\Users\\tiago.torres\\Desktop\\TESTE_DDL\\",ScriptFileFormateType.ALL_SCRIPTS_AT_ONE_FILE);
+		createFile("D:\\ZZZ_DDL_SISTEMAS_MANAGER\\",ScriptFileFormateType.ALL_SCRIPTS_AT_ONE_FILE);
 	}
 	
 	public void createFile(String path, ScriptFileFormateType type) {

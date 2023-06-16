@@ -17,12 +17,13 @@ public class MapColumnIsUnique implements IMapperColumn {
 			if (unique.startsWith("@Table")) {
 				result = unique.replaceAll(".*.columnNames|[={}()\"]", "").trim();
 			} else if (unique.startsWith("@Column")) {
+				String columnName = table.getLastColumn().getName() == null ? unique.replaceAll(".*.name|,.*|[^A-Z-a-z-0-9-_]", ""): table.getLastColumn().getName();
 				result = unique.replaceAll(".*.unique|,.*|[= ()]", "").trim();
-				result = result.equals("true") ? table.getLastColumn().getName() : "";
+				result = result.equals("true") ? columnName : "";
 			} else {
 				result = unique.replaceAll(".*.columnNames|[={}()\"]", "").trim();
 			}
-			
+						
 			if(result.endsWith(",")) {
 				StringBuffer t = new StringBuffer();
 				t.append(result);

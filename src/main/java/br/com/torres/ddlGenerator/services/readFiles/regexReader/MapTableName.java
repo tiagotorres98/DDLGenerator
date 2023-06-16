@@ -18,6 +18,11 @@ public class MapTableName implements IMapperTable {
 			table.setName(result);
 		}
 		
+		if(line.trim().startsWith("@Entity(")) {
+			result = line.replaceAll("(@Entity).*.name=\"|[\")]","");
+			table.setName(result);
+		}
+		
 	}
 
 }

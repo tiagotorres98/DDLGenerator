@@ -7,5 +7,6 @@ import br.com.torres.ddlGenerator.services.IMapper;
 public interface IMapperFactory {
 
 	public List<IMapper> get();
+
 	
 }

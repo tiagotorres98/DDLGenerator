@@ -1,8 +1,14 @@
 package br.com.torres.ddlGenerator.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Column {
 
 	private String name;

@@ -36,5 +36,10 @@ public class AdjustingTypeOfPK implements IAdjustments {
 			});
 		});
 		
+		tables.stream()
+		.filter(f-> f.getPrimaryKey() == null)
+		.forEach(t->{	
+			t.setPrimaryKey("ID");
+		});	
 	}
 }

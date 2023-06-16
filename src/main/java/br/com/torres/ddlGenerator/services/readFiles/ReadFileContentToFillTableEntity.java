@@ -23,8 +23,7 @@ public class ReadFileContentToFillTableEntity implements IReadFileToFillTableEnt
 		final Optional<String> block = blocks.stream().findFirst();
 		Scanner scan = new Scanner(block.orElse(""));
 		while (scan.hasNext()) {
-			String line = scan.nextLine();
-			
+			String line = scan.nextLine();	
 			mapperFactory.get().stream()
 			.filter(f -> f instanceof IMapperTable)
 			.forEach(m -> m.map(line, table));

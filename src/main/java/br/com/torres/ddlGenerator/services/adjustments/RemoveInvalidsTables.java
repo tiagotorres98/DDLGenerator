@@ -15,7 +15,7 @@ public class RemoveInvalidsTables implements IAdjustments {
 		// TODO Auto-generated method stub
 		List<Table> invalids = new ArrayList<Table>();
 		tables.forEach(t -> {
-			if(Objects.isNull(t.getName()) && t.getEmbeddableTable().equals(Boolean.FALSE)) {
+			if(Objects.isNull(t.getName()) && t.getEmbeddableTable().equals(Boolean.FALSE) || Objects.isNull(t.getPrimaryKeyType())) {
 				invalids.add(t);
 			}
 		});

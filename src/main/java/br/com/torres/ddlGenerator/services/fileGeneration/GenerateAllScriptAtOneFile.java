@@ -20,7 +20,6 @@ public class GenerateAllScriptAtOneFile implements IFileGenerator {
 		// TODO Auto-generated method stub
 		try {
 		      FileWriter myWriter = new FileWriter(pathExport.concat(FILE_NAME));
-			  myWriter.write("BEGIN TRAN \n");
 		      writeFile(myWriter,scripts);
 		      myWriter.close();
 		    } catch (IOException e) {
